@@ -19,6 +19,7 @@ Upload model `python ml_project/upload_s3.py` :: _Modify manually what to upload
 dvc init
 dvc remote add s3cache s3://evgerher-ydata-demo/dvc
 dvc remote modify s3cache profile ydata-demo
+dvc remote modify s3cache endpointurl https://storage.yandexcloud.net
 ```
 
 

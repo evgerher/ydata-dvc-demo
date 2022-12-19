@@ -1,3 +1,4 @@
 ['remote "s3cache"']
     url = s3://evgerher-ydata-demo/dvc
     profile = ydata-demo
+    endpointurl = https://storage.yandexcloud.net

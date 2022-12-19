@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Union
 
 from .dataset_params import SplittingParams
 from .feature_params import FeatureParams
@@ -21,7 +22,7 @@ class TrainingPipelineParams:
 TrainingPipelineParamsSchema = class_schema(TrainingPipelineParams)
 
 
-def read_training_pipeline_params(path: Path) -> TrainingPipelineParams:
+def read_training_pipeline_params(path: Union[Path, str]) -> TrainingPipelineParams:
     with open(path, "r") as input_stream:
         schema = TrainingPipelineParamsSchema()
         return schema.load(yaml.safe_load(input_stream))

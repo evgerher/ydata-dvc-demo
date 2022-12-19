@@ -1,0 +1,31 @@
+stages:
+  download:
+    cmd: python ml_project/train.py load_data --train_cloud_path data/train.csv --test_cloud_path data/test.csv
+    deps:
+      - ml_project/train.py
+      - data/data.xml
+    outs:
+      - data/raw
+    params:
+      - input_data_path
+  featurize:
+    cmd: python ml_project/train.py featurize --data_folder data/raw --output_folder data/processed
+    deps:
+      - data/raw
+      - ml_project/train.py
+    outs:
+      - data/processed
+    params:
+      - feature_params
+      - splitting_params
+  train:
+    cmd: python ml_project/train.py train_model --data_folder data/processed
+    deps:
+      - data/processed
+      - ml_project/train.py
+    outs:
+      - artifacts
+    params:
+      - train_params
+      - output_model_path
+      - test_predictions_path
