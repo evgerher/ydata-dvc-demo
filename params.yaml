@@ -1,6 +1,6 @@
 input_data_path: "data/raw/"
-output_model_path: "artifacts/model_rf.pkl"
-test_predictions_path: "artifacts/preds_rf.pkl"
+output_model_path: "artifacts/model.pkl"
+test_predictions_path: "artifacts/preds.pkl"
 splitting_params:
   val_size: 0.3
   random_state: 42

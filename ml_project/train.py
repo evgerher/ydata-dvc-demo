@@ -11,7 +11,7 @@ from ml_project.utils.helpers import setup_logger
 
 logger = logging.getLogger('trainer')
 
-params: TrainingPipelineParams = read_training_pipeline_params('configs/train.yaml')
+params: TrainingPipelineParams = read_training_pipeline_params('params.yaml')
 
 def data_callback(args):
     output_dir = Path(args.output_path)
@@ -44,10 +44,6 @@ def featurizer_callback(args):
         pickle.dump(ds_val, val_f, protocol=pickle.HIGHEST_PROTOCOL)
         pickle.dump(ds_test, test_f, protocol=pickle.HIGHEST_PROTOCOL)
         pickle.dump(transformer, transformer_f, protocol=pickle.HIGHEST_PROTOCOL)
-
-
-def model_callback(args):
-    pass
 
 
 def parse_args():

@@ -1,0 +1,82 @@
+schema: '2.0'
+stages:
+  featurize:
+    cmd: python ml_project/train.py featurize --data_folder data/raw --output_folder
+      data/processed
+    deps:
+    - path: data/raw/test.csv
+      md5: 2e3f64b2fdd4304520274e9d8b6d5574
+      size: 575796
+    - path: data/raw/train.csv
+      md5: 6002a1e47e806bfb32dc8ec1d58d7bfe
+      size: 1068341
+    - path: ml_project/train.py
+      md5: 5b0880e7a65e975c181fcfb433c392b0
+      size: 5556
+    params:
+      params.yaml:
+        feature_params:
+          categorical_policy: ohe
+          numerical_policy: identity
+          date_column: datetime
+          extra_features_enabled: true
+          categorical_features:
+          - season
+          - weather
+          - workingday
+          - holiday
+          numerical_features:
+          - temp
+          - atemp
+          - windspeed
+          - humidity
+          target_col: count
+        splitting_params:
+          val_size: 0.3
+          random_state: 42
+    outs:
+    - path: data/processed/test.pkl
+      md5: 88b89d28797e4f353d9119f9b153dd00
+      size: 1195345
+    - path: data/processed/train.pkl
+      md5: 110efcb71c61e932c9d86e5a728459dd
+      size: 1646980
+    - path: data/processed/transformer.pkl
+      md5: e59a55bb0ccdfb6fbcaff3f144a34c39
+      size: 2719
+    - path: data/processed/val.pkl
+      md5: 7a43900ddabfe6e58457381c3d2d8113
+      size: 706507
+  train:
+    cmd: python ml_project/train.py train_model --data_folder data/processed
+    deps:
+    - path: data/processed/test.pkl
+      md5: 88b89d28797e4f353d9119f9b153dd00
+      size: 1195345
+    - path: data/processed/train.pkl
+      md5: 110efcb71c61e932c9d86e5a728459dd
+      size: 1646980
+    - path: data/processed/transformer.pkl
+      md5: e59a55bb0ccdfb6fbcaff3f144a34c39
+      size: 2719
+    - path: data/processed/val.pkl
+      md5: 7a43900ddabfe6e58457381c3d2d8113
+      size: 706507
+    - path: ml_project/train.py
+      md5: 5b0880e7a65e975c181fcfb433c392b0
+      size: 5556
+    params:
+      params.yaml:
+        output_model_path: artifacts/model.pkl
+        test_predictions_path: artifacts/preds.pkl
+        train_params:
+          model_type: random_forest
+          random_state: 14
+          kwargs:
+            n_estimators: 100
+            criterion: squared_error
+            max_depth:
+    outs:
+    - path: artifacts/model.pkl
+      md5: de8ed3899718afe9985a3107681d4cfc
+      size: 57934220

@@ -11,8 +11,18 @@ pip install -e .
 
 ### Usage
 
-Run training `python ml_project/train.py --config configs/train_config.yaml`  
-Upload model `python ml_project/upload_s3.py` :: _Modify manually what to upload and where!_
+Load data `python ml_project/train.py load_data --train_cloud_path dvc/train.csv --test_cloud_path dvc/test.csv`  
+Featurize `python ml_project/train.py featurize --data_folder data/raw --output_folder data/processed`
+Train model `python ml_project/train.py train_model --data_folder data/processed`
+
+## DVC
+
+Examples
+```
+dvc add /path/to/item.pkl
+dvc push
+dvc repro
+```
 
 ### DVC initialization
 
@@ -23,12 +33,7 @@ dvc remote modify s3cache profile ydata-demo
 dvc remote modify s3cache endpointurl https://storage.yandexcloud.net
 ```
 
-
-### Test
-
-Tests framework == `pytest`
-
-`pytest tests/`
+Optional: `dvc remote default s3cache`
 
 ---
 

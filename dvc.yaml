@@ -2,20 +2,27 @@ stages:
   featurize:
     cmd: python ml_project/train.py featurize --data_folder data/raw --output_folder data/processed
     deps:
-      - data/raw
+      - data/raw/train.csv
+      - data/raw/test.csv
       - ml_project/train.py
     outs:
-      - data/processed
+      - data/processed/train.pkl
+      - data/processed/val.pkl
+      - data/processed/test.pkl
+      - data/processed/transformer.pkl
     params:
       - feature_params
       - splitting_params
   train:
     cmd: python ml_project/train.py train_model --data_folder data/processed
     deps:
-      - data/processed
+      - data/processed/train.pkl
+      - data/processed/val.pkl
+      - data/processed/test.pkl
+      - data/processed/transformer.pkl
       - ml_project/train.py
     outs:
-      - artifacts
+      - artifacts/model.pkl
     params:
       - train_params
       - output_model_path
