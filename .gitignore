@@ -1,0 +1,9 @@
+*.pkl
+data/raw/*
+data/processed/*
+.idea
+.DS_Store
+venv/
+__pychache__/
+*__pychache__/
+*.pyc

@@ -1,0 +1,11 @@
+pytest
+scikit-learn
+PyYAML==6.0
+marshmallow-dataclass==8.5.10
+pandas
+xgboost
+catboost
+boto3
+dvc
+dvc-s3
+mlflow

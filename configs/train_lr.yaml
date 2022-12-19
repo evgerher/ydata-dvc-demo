@@ -1,0 +1,25 @@
+input_data_path: "data/raw/"
+output_model_path: "artifacts/model_lr.pkl"
+test_predictions_path: "artifacts/preds_lr.pkl"
+splitting_params:
+  val_size: 0.3
+  random_state: 42
+train_params:
+  model_type: "linear_regression"
+  random_state: 16
+feature_params:
+  categorical_policy: "label_encoder"
+  numerical_policy: "standard_scaler"
+  date_column: "datetime"
+  extra_features_enabled: true
+  categorical_features:
+    - "season"
+    - "weather"
+    - "workingday"
+    - "holiday"
+  numerical_features:
+    - "temp"
+    - "atemp"
+    - "windspeed"
+    - "humidity"
+  target_col: "count"
