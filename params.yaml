@@ -5,12 +5,8 @@ splitting_params:
   val_size: 0.3
   random_state: 42
 train_params:
-  model_type: "random_forest"
+  model_type: "catboost"
   random_state: 14
-  kwargs:
-    n_estimators: 100
-    criterion: "squared_error"
-    max_depth: null
 feature_params:
   categorical_policy: "ohe"
   numerical_policy: "identity"

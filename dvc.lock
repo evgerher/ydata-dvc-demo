@@ -42,7 +42,7 @@ stages:
       md5: 110efcb71c61e932c9d86e5a728459dd
       size: 1646980
     - path: data/processed/transformer.pkl
-      md5: f0596b4c4484fbbc837be2aab4bc733a
+      md5: e8a4c91b80ac5e98d2f1dfd3d8ab8e88
       size: 2719
     - path: data/processed/val.pkl
       md5: 7a43900ddabfe6e58457381c3d2d8113
@@ -57,7 +57,7 @@ stages:
       md5: 110efcb71c61e932c9d86e5a728459dd
       size: 1646980
     - path: data/processed/transformer.pkl
-      md5: f0596b4c4484fbbc837be2aab4bc733a
+      md5: e8a4c91b80ac5e98d2f1dfd3d8ab8e88
       size: 2719
     - path: data/processed/val.pkl
       md5: 7a43900ddabfe6e58457381c3d2d8113
@@ -70,13 +70,9 @@ stages:
         output_model_path: artifacts/model.pkl
         test_predictions_path: artifacts/preds.pkl
         train_params:
-          model_type: random_forest
+          model_type: catboost
           random_state: 14
-          kwargs:
-            n_estimators: 100
-            criterion: squared_error
-            max_depth:
     outs:
     - path: artifacts/model.pkl
-      md5: 0c751b7e6401e4863a57cd267e9430c7
-      size: 57934220
+      md5: e1fea22af6fc06beffd75529f0a67f7a
+      size: 1091574
