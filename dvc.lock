@@ -70,9 +70,13 @@ stages:
         output_model_path: artifacts/model.pkl
         test_predictions_path: artifacts/preds.pkl
         train_params:
-          model_type: linear_regression
+          model_type: random_forest
           random_state: 14
+          kwargs:
+            n_estimators: 100
+            criterion: squared_error
+            max_depth:
     outs:
     - path: artifacts/model.pkl
-      md5: 99bf2e8d0c8215b3aff3f174ac081e2d
-      size: 3482
+      md5: 0c751b7e6401e4863a57cd267e9430c7
+      size: 57934220
