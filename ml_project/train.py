@@ -15,8 +15,8 @@ params: TrainingPipelineParams = read_training_pipeline_params('configs/train.ya
 
 def data_callback(args):
     output_dir = Path(args.output_path)
-    download_data(args.train_url, output_dir / 'train.csv')
-    download_data(args.test_url, output_dir / 'test.csv')
+    download_data(args.train_path, output_dir / 'train.csv')
+    download_data(args.test_path, output_dir / 'test.csv')
 
 
 def featurizer_callback(args):
@@ -62,11 +62,13 @@ def parse_args():
     data_parser.add_argument('--train_cloud_path',
                              type=str,
                              required=True,
+                             dest='train_path',
                              metavar='path/to/data.csv',
                              help='Url to data file')
     data_parser.add_argument('--test_cloud_path',
                              type=str,
                              required=True,
+                             dest='test_path',
                              metavar='path/to/data.csv',
                              help='Url to data file')
     data_parser.add_argument('--output_path',
@@ -90,14 +92,7 @@ def parse_args():
                                  type=str,
                                  default='data/processed',
                                  help='Path to stored data')
-    model_parser.set_defaults(callback=model_callback)
-
-    parser.add_argument('--config',
-                        type=str,
-                        dest='config_path',
-                        required=True,
-                        metavar='config/train.yaml',
-                        help='Path to config file to run train with')
+    model_parser.set_defaults(callback=train_model_callback)
     return parser.parse_args()
 
 
@@ -113,9 +108,10 @@ def load_ds(folder: Path):
         return (ds_train, ds_val, ds_test), transformer
 
 
-def train_model(args):
+def train_model_callback(args):
     logger.info(f'Starting training procedure, configs={params.train_params}')
-    (ds_train, ds_val, ds_test), transformer = load_ds(args.data_folder)
+    data_folder = Path(args.data_folder)
+    (ds_train, ds_val, ds_test), transformer = load_ds(data_folder)
     model = model_factory(params.train_params)
     model.fit(ds_train.X, ds_train.Y)
     model_predictions = model.predict(ds_val.X)

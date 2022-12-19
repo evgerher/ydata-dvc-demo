@@ -19,6 +19,7 @@ s3 = session.client(
 
 
 def download_data(cloud_path: str, local_path: Path):
+    local_path = str(local_path)
     s3.download_file(BUCKET_NAME, Key=cloud_path, Filename=local_path)
 
 

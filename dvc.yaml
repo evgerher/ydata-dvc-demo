@@ -1,6 +1,6 @@
 stages:
   download:
-    cmd: python ml_project/train.py load_data --train_cloud_path data/train.csv --test_cloud_path data/test.csv
+    cmd: python ml_project/train.py load_data --train_cloud_path dvc/train.csv --test_cloud_path dvc/test.csv
     deps:
       - ml_project/train.py
       - data/data.xml

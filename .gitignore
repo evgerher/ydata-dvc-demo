@@ -7,3 +7,4 @@ venv/
 __pychache__/
 *__pychache__/
 *.pyc
+ml_project.egg-info
