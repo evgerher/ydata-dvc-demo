@@ -1,6 +1,5 @@
 *.pkl
-data/raw/*
-data/processed/*
+*.csv
 .idea
 .DS_Store
 venv/

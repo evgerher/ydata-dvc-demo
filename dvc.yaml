@@ -1,13 +1,4 @@
 stages:
-  download:
-    cmd: python ml_project/train.py load_data --train_cloud_path dvc/train.csv --test_cloud_path dvc/test.csv
-    deps:
-      - ml_project/train.py
-      - data/data.xml
-    outs:
-      - data/raw
-    params:
-      - input_data_path
   featurize:
     cmd: python ml_project/train.py featurize --data_folder data/raw --output_folder data/processed
     deps:
