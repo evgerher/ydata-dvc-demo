@@ -16,8 +16,8 @@ logger = logging.getLogger('trainer')
 
 params: TrainingPipelineParams = read_training_pipeline_params('params.yaml')
 
-# mlflow.set_tracking_uri("http://YOUR-SERVER:4040")
-# mlflow.set_experiment("my-experiment")
+mlflow.set_tracking_uri("http://localhost:5005")
+mlflow.set_experiment("my-experiment")
 
 
 def data_callback(args):

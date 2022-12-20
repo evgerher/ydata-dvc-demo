@@ -8,3 +8,4 @@ __pychache__/
 *.pyc
 ml_project.egg-info
 catboost_info
+mlruns
