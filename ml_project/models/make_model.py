@@ -46,4 +46,4 @@ def xgboost_regression(kwargs: dict, random_state: int) -> xg.XGBRegressor:
 
 
 def catboost_regression(kwargs: dict, random_state: int) -> cb.CatBoostRegressor:
-    return cb.CatBoostRegressor(**kwargs, random_state=random_state)
+    return cb.CatBoostRegressor(**kwargs, random_state=random_state, verbose=False)

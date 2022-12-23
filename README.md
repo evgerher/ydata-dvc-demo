@@ -11,9 +11,9 @@ pip install -e .
 
 ### Usage
 
-Load data `python ml_project/train.py load_data --train_cloud_path dvc/train.csv --test_cloud_path dvc/test.csv`  
-Featurize `python ml_project/train.py featurize --data_folder data/raw --output_folder data/processed`
-Train model `python ml_project/train.py train_model --data_folder data/processed`
+Load data `python ml_project/train.py load_data --train_cloud_path dvc/train.csv --test_cloud_path dvc/test.csv`     
+Featurize `python ml_project/train.py featurize --data_folder data/raw --output_folder data/processed`  
+Train model `python ml_project/train.py train_model --data_folder data/processed`  
 
 ## DVC
 
@@ -34,6 +34,17 @@ dvc remote modify s3cache endpointurl https://storage.yandexcloud.net
 ```
 
 Optional: `dvc remote default s3cache`
+
+
+## MlFlow
+
+Resources:  
+- https://www.mlflow.org/docs/latest/quickstart.html  
+- https://www.mlflow.org/docs/latest/tracking.html#concepts  
+
+Automatic parameters tracking examples:  
+- https://www.mlflow.org/docs/latest/python_api/mlflow.catboost.html  
+- https://www.mlflow.org/docs/latest/python_api/mlflow.pytorch.html  
 
 ---
 

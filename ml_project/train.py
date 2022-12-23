@@ -4,7 +4,6 @@ from pathlib import Path
 import logging
 
 import mlflow
-from mlflow import log_metric, log_param
 
 from ml_project.data import read_data, split_train_val_data, download_data
 from ml_project.entities import read_training_pipeline_params, TrainingPipelineParams
@@ -13,10 +12,10 @@ from ml_project.models import model_factory, compute_metrics, save_model
 from ml_project.utils.helpers import setup_logger
 
 logger = logging.getLogger('trainer')
-
+print('ok')
 params: TrainingPipelineParams = read_training_pipeline_params('params.yaml')
 
-mlflow.set_tracking_uri("http://localhost:5005")
+mlflow.set_tracking_uri("http://51.250.16.251:5005")
 mlflow.set_experiment("my-experiment")
 
 
@@ -117,14 +116,14 @@ def train_model_callback(args):
     (ds_train, ds_val, ds_test), transformer = load_ds(data_folder)
     model = model_factory(params.train_params)
 
-    log_param('model_type', params.train_params.model_type)
-    log_param('kwargs', params.train_params.kwargs)
+    mlflow.log_param('model_type', params.train_params.model_type)
+    mlflow.log_param('kwargs', params.train_params.kwargs)
 
     model.fit(ds_train.X, ds_train.Y)
     model_predictions = model.predict(ds_val.X)
     metrics = compute_metrics(ds_val.Y, model_predictions)
     for metric_name, metric_value in metrics.items():
-        log_metric(metric_name, metric_value)
+        mlflow.log_metric(metric_name, metric_value)
 
     logger.info(f'Model performance: {metrics}')
     save_model(model, metrics, transformer, params.output_model_path)
