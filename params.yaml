@@ -6,7 +6,7 @@ splitting_params:
   random_state: 42
 train_params:
   model_type: "catboost"
-  random_state: 14
+  random_state: 42
 feature_params:
   categorical_policy: "ohe"
   numerical_policy: "identity"
