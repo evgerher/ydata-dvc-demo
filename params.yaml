@@ -2,11 +2,13 @@ input_data_path: "data/raw/"
 output_model_path: "artifacts/model.pkl"
 test_predictions_path: "artifacts/preds.pkl"
 splitting_params:
-  val_size: 0.3
-  random_state: 42
+  val_size: 0.2
+  random_state: 190
 train_params:
   model_type: "catboost"
-  random_state: 42
+  random_state: 190
+  kwargs:
+    iterations: 10
 feature_params:
   categorical_policy: "ohe"
   numerical_policy: "identity"

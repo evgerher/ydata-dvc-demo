@@ -15,7 +15,7 @@ logger = logging.getLogger('trainer')
 print('ok')
 params: TrainingPipelineParams = read_training_pipeline_params('params.yaml')
 
-# mlflow.set_tracking_uri("http://51.250.16.251:5005")
+mlflow.set_tracking_uri("http://51.250.23.4:5005")
 mlflow.set_experiment("my-experiment")
 
 

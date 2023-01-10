@@ -11,8 +11,8 @@ stages:
       md5: 6002a1e47e806bfb32dc8ec1d58d7bfe
       size: 1068341
     - path: ml_project/train.py
-      md5: b75a4e3586cbb67182013865080c3b57
-      size: 5882
+      md5: b3eafcedf172681ce9966650a3a2f7fb
+      size: 5878
     params:
       params.yaml:
         feature_params:
@@ -32,21 +32,21 @@ stages:
           - humidity
           target_col: count
         splitting_params:
-          val_size: 0.3
-          random_state: 42
+          val_size: 0.2
+          random_state: 190
     outs:
     - path: data/processed/test.pkl
       md5: 88b89d28797e4f353d9119f9b153dd00
       size: 1195345
     - path: data/processed/train.pkl
-      md5: 110efcb71c61e932c9d86e5a728459dd
-      size: 1646980
+      md5: e7630928e70bc5c6925435a56af298ff
+      size: 1882006
     - path: data/processed/transformer.pkl
-      md5: e59a55bb0ccdfb6fbcaff3f144a34c39
+      md5: 5c3e2c4ce3b9b772c8027766f7656f12
       size: 2719
     - path: data/processed/val.pkl
-      md5: 7a43900ddabfe6e58457381c3d2d8113
-      size: 706507
+      md5: 910f23e0c875f21096784efb5b9e01f4
+      size: 471499
   train:
     cmd: python ml_project/train.py train_model --data_folder data/processed
     deps:
@@ -54,25 +54,27 @@ stages:
       md5: 88b89d28797e4f353d9119f9b153dd00
       size: 1195345
     - path: data/processed/train.pkl
-      md5: 110efcb71c61e932c9d86e5a728459dd
-      size: 1646980
+      md5: e7630928e70bc5c6925435a56af298ff
+      size: 1882006
     - path: data/processed/transformer.pkl
-      md5: e59a55bb0ccdfb6fbcaff3f144a34c39
+      md5: 5c3e2c4ce3b9b772c8027766f7656f12
       size: 2719
     - path: data/processed/val.pkl
-      md5: 7a43900ddabfe6e58457381c3d2d8113
-      size: 706507
+      md5: 910f23e0c875f21096784efb5b9e01f4
+      size: 471499
     - path: ml_project/train.py
-      md5: b75a4e3586cbb67182013865080c3b57
-      size: 5882
+      md5: b3eafcedf172681ce9966650a3a2f7fb
+      size: 5878
     params:
       params.yaml:
         output_model_path: artifacts/model.pkl
         test_predictions_path: artifacts/preds.pkl
         train_params:
           model_type: catboost
-          random_state: 42
+          random_state: 190
+          kwargs:
+            iterations: 10
     outs:
     - path: artifacts/model.pkl
-      md5: f09bc1ca8b12288680893bd3560b7699
-      size: 1090617
+      md5: 14bd4be73de5862c9e65eb5da4edd03e
+      size: 21519
