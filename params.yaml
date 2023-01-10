@@ -5,8 +5,11 @@ splitting_params:
   val_size: 0.3
   random_state: 42
 train_params:
-  model_type: "catboost"
+  model_type: "random_guesser"
   random_state: 42
+  kwargs:
+    low: 110
+    high: 150
 feature_params:
   categorical_policy: "ohe"
   numerical_policy: "identity"

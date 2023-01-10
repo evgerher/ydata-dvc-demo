@@ -11,8 +11,8 @@ stages:
       md5: 6002a1e47e806bfb32dc8ec1d58d7bfe
       size: 1068341
     - path: ml_project/train.py
-      md5: b75a4e3586cbb67182013865080c3b57
-      size: 5882
+      md5: b3eafcedf172681ce9966650a3a2f7fb
+      size: 5878
     params:
       params.yaml:
         feature_params:
@@ -42,7 +42,7 @@ stages:
       md5: 110efcb71c61e932c9d86e5a728459dd
       size: 1646980
     - path: data/processed/transformer.pkl
-      md5: e59a55bb0ccdfb6fbcaff3f144a34c39
+      md5: 15b8f9f8c00e00bc45aa7ab3f1541712
       size: 2719
     - path: data/processed/val.pkl
       md5: 7a43900ddabfe6e58457381c3d2d8113
@@ -57,22 +57,25 @@ stages:
       md5: 110efcb71c61e932c9d86e5a728459dd
       size: 1646980
     - path: data/processed/transformer.pkl
-      md5: e59a55bb0ccdfb6fbcaff3f144a34c39
+      md5: 15b8f9f8c00e00bc45aa7ab3f1541712
       size: 2719
     - path: data/processed/val.pkl
       md5: 7a43900ddabfe6e58457381c3d2d8113
       size: 706507
     - path: ml_project/train.py
-      md5: b75a4e3586cbb67182013865080c3b57
-      size: 5882
+      md5: b3eafcedf172681ce9966650a3a2f7fb
+      size: 5878
     params:
       params.yaml:
         output_model_path: artifacts/model.pkl
         test_predictions_path: artifacts/preds.pkl
         train_params:
-          model_type: catboost
+          model_type: random_guesser
           random_state: 42
+          kwargs:
+            low: 110
+            high: 150
     outs:
     - path: artifacts/model.pkl
-      md5: f09bc1ca8b12288680893bd3560b7699
-      size: 1090617
+      md5: 23f06190d7f667a37ac3726779f98a8c
+      size: 6779
